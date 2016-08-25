@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Force New Tab</title>
+    <script type="text/javascript">
+      safari.application.addEventListener(
+        'message',
+        function(event) {
+          console.log(event);
+          var tab = safari.application.activeBrowserWindow.openTab();
+          tab.url = event.message;
+        },
+        false
+      );
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
