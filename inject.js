@@ -1,21 +1,20 @@
-function apply(element) {
-  element.addEventListener(
-    'webkitmouseforcewillbegin',
-    function(event) {
+document.addEventListener(
+  'webkitmouseforcewillbegin',
+  function(event) {
+    if (event.target.nodeName === 'A') {
       event.preventDefault();
     }
-  );
+  }
+);
 
-  element.addEventListener(
-    'webkitmouseforcedown',
-    function(event) {
-      safari.self.tab.dispatchMessage('open-new-tab', element.href);
+document.addEventListener(
+  'webkitmouseforcedown',
+  function(event) {
+    if (event.target.nodeName === 'A') {
+      safari.self.tab.dispatchMessage(
+        'open-new-tab',
+        event.target.href
+      );
     }
-  )
-}
-
-var elements = document.getElementsByTagName('A');
-
-for (var i = 0; i < elements.length; i++) {
-  apply(elements.item(i));
-}
+  }
+);
