@@ -1,9 +1,12 @@
-function recursive(node, i) {
-  if (node.nodeName === 'A') {
+const NODE_NAME = 'A';
+const MAX_RECURSION = 4;
+
+function recursive(node, i = 0) {
+  if (node.nodeName === NODE_NAME) {
     return node;
   }
 
-  if (i < 4) {
+  if (i < MAX_RECURSION) {
     return recursive(node.parentNode, i + 1);
   }
 
@@ -12,8 +15,8 @@ function recursive(node, i) {
 
 document.addEventListener(
   'webkitmouseforcewillbegin',
-  function(event) {
-    if (event.target.nodeName === 'A') {
+  event => {
+    if (event.target.nodeName === NODE_NAME) {
       event.preventDefault();
     }
   }
@@ -21,8 +24,8 @@ document.addEventListener(
 
 document.addEventListener(
   'webkitmouseforcedown',
-  function(event) {
-    var node = recursive(event.target, 0);
+  event => {
+    var node = recursive(event.target);
 
     if (node) {
       safari.self.tab.dispatchMessage(
