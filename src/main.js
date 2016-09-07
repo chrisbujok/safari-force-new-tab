@@ -1,14 +1,12 @@
 safari.application.addEventListener(
   'message',
   event => {
-    var currentIndex = safari.application.activeBrowserWindow.tabs
-      .indexOf(safari.application.activeBrowserWindow.activeTab);
+    const { tabs, activeTab } = safari.application.activeBrowserWindow;
 
-    var tab = safari.application.activeBrowserWindow.openTab(
+    safari.application.activeBrowserWindow.openTab(
       null,
-      currentIndex + 1
-    );
-    tab.url = event.message;
+      tabs.indexOf(activeTab) + 1
+    ).url = event.message;
   },
   false
 );
