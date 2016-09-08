@@ -1,12 +1,3 @@
-safari.application.addEventListener(
-  'message',
-  event => {
-    const { tabs, activeTab } = safari.application.activeBrowserWindow;
+import tabOpener from './tab-opener';
 
-    safari.application.activeBrowserWindow.openTab(
-      null,
-      tabs.indexOf(activeTab) + 1
-    ).url = event.message;
-  },
-  false
-);
+safari.application.addEventListener('message', tabOpener, false);
