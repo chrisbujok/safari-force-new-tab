@@ -1,7 +1,10 @@
 import gulp from 'gulp';
-import babel from 'gulp-babel';
-import uglify from 'gulp-uglify';
 import del from 'del';
+import tap from 'gulp-tap';
+import buffer from 'gulp-buffer';
+import browserify from 'browserify';
+import babelify from 'babelify';
+import uglify from 'gulp-uglify';
 import htmlmin from 'gulp-htmlmin';
 
 const DIST_DIR = 'dist/force-new-tab.safariextension';
@@ -16,8 +19,13 @@ gulp.task('copy', () => {
 });
 
 gulp.task('build:dist', () => {
-  gulp.src('src/**/*.js')
-    .pipe(babel())
+  gulp.src('src/**/*.js', { read: false })
+    .pipe(tap(function (file) {
+      file.contents = browserify(file.path, {debug: true})
+        .transform('babelify')
+        .bundle();
+    }))
+    .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest(DIST_DIR));
 

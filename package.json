@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Safari Extension for opening links in new tab by force-clicking them (only MacBooks with Force Touch trackpads)",
   "scripts": {
-    "build": "gulp build --gulpfile build/gulpfile.babel.js --cwd ./ && ./build/build-extension.sh"
+    "build": "gulp build --gulpfile build/gulpfile.babel.js --cwd ./ && ./build/build-extension.sh",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,18 @@
   "devDependencies": {
     "babel-core": "^6.14.0",
     "babel-preset-es2015": "^6.14.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-buffer": "0.0.2",
     "gulp-htmlmin": "^2.0.0",
+    "gulp-tap": "^0.1.3",
     "gulp-uglify": "^2.0.0",
+    "jsdom": "^9.5.0",
+    "mocha": "^3.0.2",
+    "mocha-jsdom": "^1.1.0",
+    "sinon": "^1.17.5",
     "xar-js": "^0.2.0"
   }
 }
