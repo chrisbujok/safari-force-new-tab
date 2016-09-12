@@ -24,6 +24,9 @@ gulp.task('build:dist', () => {
   gulp.src('src/index.html')
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest(DIST_DIR));
+
+  gulp.src('src/icons/*.png')
+    .pipe(gulp.dest(DIST_DIR));
 });
 
 gulp.task('build', ['clean:dist', 'copy', 'build:dist']);
